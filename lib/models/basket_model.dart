@@ -10,7 +10,13 @@ class BasketModel {
 
   factory BasketModel.fromJson(Map<String, dynamic> json) {
     return BasketModel(
-      products: json['products'],
+      products: List.from(json['products'] ?? [])
+          .map((product) => ProductModel.fromJson(product))
+          .toList(),
     );
+  }
+
+  void addProduct(ProductModel product) {
+    this.products.add(product);
   }
 }

@@ -6,29 +6,53 @@ import 'package:ecom_app/models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('fromJson should return a BasketModel from a JSON argument', () {
-    TestWidgetsFlutterBinding.ensureInitialized();
-    final productsJson = {
-      "id": "1",
-      "SKU": "1210",
-      "name": "Nike Air Relentless 4 Mens Running Shoes",
-      "brandName": "Nike",
-      "mainImage": "https://test.com",
-      "price": {"amount": "45.00", "currency": "GBP"},
-      "sizes": ["8", "9", "10", "11"],
-      "stockStatus": "IN STOCK",
-      "colour": "blue",
-      "description": "Hit the tracks..."
-    };
-    final products = [ProductModel.fromJson(productsJson)];
+  // Shared test values
+  final productsJson = {
+    "id": "1",
+    "SKU": "1210",
+    "name": "Nike Air Relentless 4 Mens Running Shoes",
+    "brandName": "Nike",
+    "mainImage": "https://test.com",
+    "price": {"amount": "45.00", "currency": "GBP"},
+    "sizes": ["8", "9", "10", "11"],
+    "stockStatus": "IN STOCK",
+    "colour": "blue",
+    "description": "Hit the tracks..."
+  };
+  final products = [ProductModel.fromJson(productsJson)];
 
-    final expectation = new BasketModel(
-      products: products,
-    );
+  group('fromJson', () {
+    test('should return a BasketModel from a JSON argument', () {
+      final expectation = new BasketModel(products: products);
+      final result = BasketModel.fromJson(productsJson);
 
-    final result = BasketModel.fromJson(productsJson);
+      expect(result.toString(), expectation.toString());
+    });
 
-    expect(result.toString(), expectation.toString());
+    test('should set products to empty if no products are provided', () {
+      final result = BasketModel.fromJson({"products": []});
+
+      expect(result.products, []);
+    });
+  });
+
+  group('addProduct', () {
+    test('addProduct should add a single product to the basket', () {
+      final basket = new BasketModel(products: []);
+
+      basket.addProduct(products.first);
+
+      expect(basket.products, [products.first]);
+    });
+
+    test('addProduct should add multiple products to the basket', () {
+      final basket = new BasketModel(products: []);
+
+      basket.addProduct(products.first);
+      basket.addProduct(products.first);
+
+      expect(basket.products, [products.first, products.first]);
+    });
   });
 }
 
