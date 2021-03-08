@@ -1,0 +1,20 @@
+{
+  "id": "1",
+  "SKU": "1210",
+  "name": "Nike Air Relentless 4 Mens Running Shoes",
+  "brandName": "Nike",
+  "mainImage": "https://test.com",
+  "price": {
+    "amount": "45.00",
+    "currency": "GBP"
+  },
+  "sizes": [
+    "8",
+    "9",
+    "10",
+    "11"
+  ],
+  "stockStatus": "IN STOCK",
+  "colour": "blue",
+  "description": "Hit the tracks..."
+}
