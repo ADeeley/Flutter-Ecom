@@ -1,3 +1,4 @@
+import 'package:ecom_app/models/price_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductModel {
@@ -6,7 +7,7 @@ class ProductModel {
   final String name;
   final String brandName;
   final String mainImage;
-  final Map<String, String> price;
+  final PriceModel price;
   final List<String> sizes;
   final String stockStatus;
   final String colour;
@@ -32,7 +33,7 @@ class ProductModel {
       name: json['name'],
       brandName: json['brandName'],
       mainImage: json['mainImage'],
-      price: json['price'],
+      price: PriceModel.fromJson(json['price']),
       sizes: json['sizes'],
       stockStatus: json['stockStatus'],
       colour: json['colour'],

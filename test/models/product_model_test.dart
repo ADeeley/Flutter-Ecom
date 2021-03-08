@@ -1,3 +1,4 @@
+import 'package:ecom_app/models/price_model.dart';
 import 'package:ecom_app/models/product_model.dart';
 import 'package:test/test.dart';
 
@@ -22,7 +23,7 @@ void main() {
       name: mockData['name'],
       brandName: mockData['brandName'],
       mainImage: mockData['mainImage'],
-      price: mockData['price'],
+      price: PriceModel.fromJson(mockData['price']),
       sizes: mockData['sizes'],
       stockStatus: mockData['stockStatus'],
       colour: mockData['colour'],
