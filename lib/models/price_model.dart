@@ -10,6 +10,10 @@ class PriceModel {
   });
 
   factory PriceModel.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     return PriceModel(
       amount: json['amount'],
       currency: json['currency'],

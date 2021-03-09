@@ -8,7 +8,7 @@ class ProductModel {
   final String brandName;
   final String mainImage;
   final PriceModel price;
-  final List<String> sizes;
+  final List<dynamic> sizes; // extract to sizes model
   final String stockStatus;
   final String colour;
   final String description;
