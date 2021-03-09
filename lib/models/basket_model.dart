@@ -22,4 +22,10 @@ class BasketModel {
     this.products.add(product);
     assert(this.products.contains(product));
   }
+
+  void removeProduct(String id) {
+    if (id == null) return;
+
+    this.products.removeWhere((product) => product.id == id);
+  }
 }
