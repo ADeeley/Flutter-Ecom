@@ -28,4 +28,10 @@ class BasketModel {
 
     this.products.removeWhere((product) => product.id == id);
   }
+
+  void empty() {
+    this.products.removeRange(0, this.products.length);
+    print(this.products);
+    assert(this.products.isEmpty);
+  }
 }

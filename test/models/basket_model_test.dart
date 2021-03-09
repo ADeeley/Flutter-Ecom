@@ -72,18 +72,18 @@ void main() {
     test('should add a single product to the basket', () {
       final basket = new BasketModel(products: []);
 
-      basket.addProduct(products.first);
+      basket.addProduct(product1);
 
-      expect(basket.products, [products.first]);
+      expect(basket.products, [product1]);
     });
 
     test('should add a new product for each sequential call', () {
       final basket = new BasketModel(products: []);
 
-      basket.addProduct(products.first);
-      basket.addProduct(products.first);
+      basket.addProduct(product1);
+      basket.addProduct(product2);
 
-      expect(basket.products, [products.first, products.first]);
+      expect(basket.products, [product1, product2]);
     });
 
     test('should return early if the product provided is null', () {
@@ -114,6 +114,15 @@ void main() {
 
       basket.removeProduct(null);
       expect(basket.products, [product1, product2, product3]);
+    });
+  });
+
+  group('empty', () {
+    test('should empty all products from the basket', () {
+      final basket = new BasketModel(products: [product1, product2, product3]);
+
+      basket.empty();
+      expect(basket.products, []);
     });
   });
 }
