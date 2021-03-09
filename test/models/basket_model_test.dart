@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ecom_app/models/basket_model.dart';
 import 'package:ecom_app/models/product_model.dart';
 // import 'package:flutter/services.dart' show rootBundle;
@@ -37,7 +35,7 @@ void main() {
   });
 
   group('addProduct', () {
-    test('addProduct should add a single product to the basket', () {
+    test('should add a single product to the basket', () {
       final basket = new BasketModel(products: []);
 
       basket.addProduct(products.first);
@@ -45,13 +43,21 @@ void main() {
       expect(basket.products, [products.first]);
     });
 
-    test('addProduct should add multiple products to the basket', () {
+    test('should add a new product for each sequential call', () {
       final basket = new BasketModel(products: []);
 
       basket.addProduct(products.first);
       basket.addProduct(products.first);
 
       expect(basket.products, [products.first, products.first]);
+    });
+
+    test('should return early if the product provided is null', () {
+      final basket = new BasketModel(products: []);
+
+      basket.addProduct(null);
+
+      expect(basket.products, []);
     });
   });
 }

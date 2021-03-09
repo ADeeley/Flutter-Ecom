@@ -17,6 +17,9 @@ class BasketModel {
   }
 
   void addProduct(ProductModel product) {
+    if (product == null) return;
+
     this.products.add(product);
+    assert(this.products.contains(product));
   }
 }
