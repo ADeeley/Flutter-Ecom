@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:ecom_app/services/products_service.dart';
 import 'package:flutter/material.dart';
 
 // Contains constants for the app
@@ -30,6 +32,12 @@ class ProductListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(config['appTitle']),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('click'),
+          onPressed: () => ProductsService(new Dio()).getProducts(),
+        ),
       ),
     );
   }

@@ -6,15 +6,17 @@ class ProductsService {
 
   ProductsService(this.dio);
 
+  ///
   Future<List<dynamic>> getProducts() async {
     final Response<dynamic> response = await dio.get(
         'https://s3-eu-west-1.amazonaws.com/api.themeshplatform.com/products.json',
         options: Options(responseType: ResponseType.json));
 
-    final List<dynamic> data = response.data;
-    final productList = data
-        .map((productJson) => ProductModel.fromJson(productJson))
-        .toList(); // extract to product list method in ProductModel
+    final Map<String, dynamic> data = response.data;
+    final productList = (data as List)
+        ?.cast<Map<String, dynamic>>()
+        ?.map((productJson) => ProductModel.fromJson(productJson))
+        ?.toList(); // extract to product list method in ProductModel
 
     return productList;
   }

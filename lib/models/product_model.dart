@@ -8,7 +8,7 @@ class ProductModel {
   final String brandName;
   final String mainImage;
   final PriceModel price;
-  final List<dynamic> sizes; // extract to sizes model
+  final List<String> sizes; // extract to sizes model
   final String stockStatus;
   final String colour;
   final String description;
@@ -34,7 +34,7 @@ class ProductModel {
       brandName: json['brandName'],
       mainImage: json['mainImage'],
       price: PriceModel.fromJson(json['price']),
-      sizes: json['sizes'],
+      sizes: List.from(json['sizes']),
       stockStatus: json['stockStatus'],
       colour: json['colour'],
       description: json['description'],
