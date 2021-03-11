@@ -1,4 +1,5 @@
 import 'dart:math' as Math;
+import 'package:ecom_app/models/price_model.dart';
 import 'package:ecom_app/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -26,7 +27,7 @@ class Product extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              '£${data.price.amount}', // Add method in pricing model to return formatted currency (can flutter do this with a currency widget???)
+              PriceModel.getPrice(data.price),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
