@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // Contains constants for the app
 // TODO: AD should be extracted into enums and external config
 Map<String, String> config = {
-  "appTitle": "BUY BUY BUY",
+  "appTitle": "TRAINER CENTRAL",
 };
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.lightBlue,
       ),
       home: ProductListPage(),
     );
@@ -31,10 +31,25 @@ class ProductListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(config['appTitle']),
-        ),
-        body: ProductList());
+      appBar: AppBar(
+        title: Text(config['appTitle'],
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontFamily: 'Helvetica')),
+        backgroundColor: Colors.blue.shade900,
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Icon(
+              Icons.toc_sharp,
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
+      body: ProductList(),
+      backgroundColor: Colors.white,
+    );
   }
 }
 
