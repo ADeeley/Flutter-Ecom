@@ -23,6 +23,7 @@ class Product extends StatelessWidget {
           Text(
             data.name,
             style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.center,
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
