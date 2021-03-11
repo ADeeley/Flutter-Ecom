@@ -31,12 +31,10 @@ class ProductsService {
     }
 
     final List<dynamic> data = response.data;
-    List<ProductModel> productList = toProductList(data);
-
-    return productList;
+    return _toProductList(data);
   }
 
-  List<ProductModel> toProductList(List<dynamic> data) {
+  List<ProductModel> _toProductList(List<dynamic> data) {
     final List<ProductModel> productList = data
         .map((productJson) => ProductModel.fromJson(productJson))
         .toList(); // extract to product list method in ProductModel
