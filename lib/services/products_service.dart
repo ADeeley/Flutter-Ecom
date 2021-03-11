@@ -2,15 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:ecom_app/models/product_model.dart';
 
 class ProductsService {
-  Dio dio;
+  Dio _dio;
 
-  ProductsService(this.dio);
+  ProductsService(this._dio);
 
-  Future<List<dynamic>> getProducts() async {
+  Future<List<ProductModel>> getProducts() async {
     Response<dynamic> response;
 
     try {
-      response = await dio.get(
+      response = await _dio.get(
           'https://s3-eu-west-1.amazonaws.com/api.themeshplatform.com/products.json',
           options: Options(responseType: ResponseType.json));
     } on DioError catch (error) {
@@ -29,8 +29,9 @@ class ProductsService {
       // Nothing to parse further at this point so just return
       return null;
     }
+    final List<dynamic> data = response.data['data'];
+    print(data);
 
-    final List<dynamic> data = response.data;
     return _toProductList(data);
   }
 
@@ -38,6 +39,7 @@ class ProductsService {
     final List<ProductModel> productList = data
         .map((productJson) => ProductModel.fromJson(productJson))
         .toList(); // extract to product list method in ProductModel
+
     return productList;
   }
 }
