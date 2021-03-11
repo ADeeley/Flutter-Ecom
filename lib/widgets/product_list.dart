@@ -1,3 +1,4 @@
+import 'package:ecom_app/widgets/pages/product_display_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:ecom_app/models/product_model.dart';
@@ -34,7 +35,17 @@ class _ProductListState extends State<ProductList> {
     if (snapshot.data != null) {
       return snapshot.data
           .map(
-            (productData) => new Product(data: productData),
+            (productData) => GestureDetector(
+              child: new Product(data: productData),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDisplayPage(),
+                  ),
+                );
+              },
+            ),
           )
           .toList();
     } else /* display loading text */ {
