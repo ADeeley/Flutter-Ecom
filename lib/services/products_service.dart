@@ -8,7 +8,7 @@ class ProductsService {
 
   Future<List<ProductModel>> getProducts() async {
     Response<dynamic> response;
-
+// add timeout
     try {
       response = await _dio.get(
           'https://s3-eu-west-1.amazonaws.com/api.themeshplatform.com/products.json',
