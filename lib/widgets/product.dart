@@ -1,6 +1,7 @@
 import 'dart:math' as Math;
 import 'package:ecom_app/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class Product extends StatelessWidget {
   final ProductModel data;
@@ -13,7 +14,11 @@ class Product extends StatelessWidget {
       child: Column(
         children: [
           Transform.rotate(
-              angle: Math.pi / 5, child: Image.network(data.mainImage)),
+              angle: Math.pi / 5,
+              child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: data.mainImage,
+                  height: 160)),
           Text(
             data.name,
             style: TextStyle(fontSize: 16),
