@@ -40,5 +40,32 @@ void main() async {
       expect(response.first.toString(),
           ProductModel.fromJson(mockProductResponse.first).toString());
     });
+
+// TODO: test other http response codes using loop
+    test('should return a null if the call fails', () async {
+      final productsService = new ProductsService(dio);
+
+      dioAdapter
+          .onGet(
+              'https://s3-eu-west-1.amazonaws.com/api.themeshplatform.com/products.json') // extract to service URLS
+          .reply(500, '');
+
+      final List<ProductModel> response = await productsService.getProducts();
+
+      expect(response, null);
+    });
+
+    test('should return a null if the call returns 404', () async {
+      final productsService = new ProductsService(dio);
+
+      dioAdapter
+          .onGet(
+              'https://s3-eu-west-1.amazonaws.com/api.themeshplatform.com/products.json') // extract to service URLS
+          .reply(404, '');
+
+      final List<ProductModel> response = await productsService.getProducts();
+
+      expect(response, null);
+    });
   });
 }
