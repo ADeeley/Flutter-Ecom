@@ -36,8 +36,11 @@ class _ProductListState extends State<ProductList> {
       return snapshot.data
           .map((productData) => Container(
                 clipBehavior: Clip.hardEdge,
-                decoration: _elementDivider(snapshot.data, productData,
-                    int.parse(config['productGridColumnCount'])),
+                decoration: _elementDivider(
+                  snapshot.data,
+                  snapshot.data.indexOf(productData),
+                  int.parse(config['productGridColumnCount']),
+                ),
                 child: GestureDetector(
                   child: new Product(data: productData),
                   onTap: () {
@@ -57,15 +60,21 @@ class _ProductListState extends State<ProductList> {
   }
 
   /// Provides a dividing line between rows of elements
+  /// Wraps around a child element of a GridView or similar
   BoxDecoration _elementDivider<T>(
-      List<T> data, T product, int crossAxisCount) {
-    final int trailing = crossAxisCount -
-        (data.length % crossAxisCount); // don't apply to trailing elements
+    List<T> elements,
+    int elementIndex,
+    int crossAxisCount,
+  ) {
+    final trailing = crossAxisCount -
+        (elements.length % crossAxisCount); // don't apply to trailing elements
 
-    if (data.indexOf(product) < data.length - trailing) {
-      return BoxDecoration(border: Border(bottom: BorderSide(width: 1)));
-    } else {
-      return BoxDecoration();
-    }
+    final shouldApply = elementIndex < elements.length - trailing;
+
+    return BoxDecoration(
+      border: shouldApply
+          ? Border(bottom: BorderSide(width: 1, color: Colors.grey.shade300))
+          : null,
+    );
   }
 }
