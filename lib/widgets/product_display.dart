@@ -36,11 +36,11 @@ class ProductDisplay extends StatelessWidget {
                   fit: BoxFit.fitWidth),
             ),
           ),
-          Text(data.description),
-          Text(
-            '${data.sizes.join(',')}',
-            style: TextStyle(color: Colors.green),
-          ),
+          // Text(data.description),
+          // Text(
+          //   '${data.sizes.join(',')}',
+          //   style: TextStyle(color: Colors.green),
+          // ),
         ],
       ),
     );
