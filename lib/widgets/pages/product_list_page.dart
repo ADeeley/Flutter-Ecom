@@ -17,7 +17,7 @@ class ProductListPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Icon(
-              Icons.shopping_bag_outlined,
+              Icons.toc_sharp,
               color: Colors.white,
             ),
           )
