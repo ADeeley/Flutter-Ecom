@@ -61,6 +61,7 @@ class _ProductListState extends State<ProductList> {
 
   /// Provides a dividing line between rows of elements
   /// Wraps around a child element of a GridView or similar
+  /// TODO: AD, Add tests
   BoxDecoration _elementDivider<T>(
     List<T> elements,
     int elementIndex,

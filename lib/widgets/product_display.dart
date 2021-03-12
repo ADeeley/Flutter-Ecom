@@ -25,12 +25,17 @@ class ProductDisplay extends StatelessWidget {
             PriceModel.getPrice(data.price),
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          Transform.rotate(
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(),
+            child: Transform.rotate(
               angle: Math.pi / 5,
               child: FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
                   image: data.mainImage,
-                  fit: BoxFit.fitWidth)),
+                  fit: BoxFit.fitWidth),
+            ),
+          ),
           Text(data.description),
           Text(
             '${data.sizes.join(',')}',
