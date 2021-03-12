@@ -23,39 +23,12 @@ class ProductDisplayPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                    onPressed: () => {},
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Icon(Icons.favorite_outline),
-                        ),
-                        Text('SAVE'),
-                      ],
-                    )),
-                TextButton(
-                    onPressed: () => {},
-                    child: Row(
-                      children: [
-                        Icon(Icons.category),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Text('SIZE GUIDE'),
-                        ),
-                      ],
-                    )),
-                TextButton(
-                    onPressed: () => {},
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Icon(Icons.share_outlined),
-                        ),
-                        Text('SHARE'),
-                      ],
-                    )),
+                SlidingActionButton(
+                    text: Text('SAVE'), icon: Icon(Icons.favorite_outline)),
+                SlidingActionButton(
+                    text: Text('SIZE GUIDE'), icon: Icon(Icons.circle)),
+                SlidingActionButton(
+                    text: Text('SHARE'), icon: Icon(Icons.share_outlined)),
               ],
             )
           ],
@@ -79,12 +52,28 @@ class ProductDisplayPage extends StatelessWidget {
   }
 }
 
-// TextButton(
-//   style: TextButton.styleFrom(
-//       primary: Colors.white,
-//       backgroundColor: Colors.green,
-//       minimumSize:
-//           Size(MediaQuery.of(context).size.width - 40, 45)),
-//   onPressed: () => {},
-//   child: Text('ADD'),
-// ),
+class SlidingActionButton extends StatelessWidget {
+  final text;
+  final icon;
+
+  const SlidingActionButton({
+    Key key,
+    Text this.text,
+    Icon this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: () => {},
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: icon,
+            ),
+            text,
+          ],
+        ));
+  }
+}
