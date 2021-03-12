@@ -13,27 +13,26 @@ class ProductDisplayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: MainAppBar(),
       body: SlidingUpPanel(
-        minHeight: 80,
+        minHeight: 100,
         panel: Column(
           children: [
             Icon(Icons.drag_handle_rounded),
-            TextButton(
-              style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  minimumSize:
-                      Size(MediaQuery.of(context).size.width - 40, 45)),
-              onPressed: () => {},
-              child: Text('ADD'),
-            ),
           ],
         ),
         body: Center(child: ProductDisplay(data)),
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: MainBottomNavigationBar(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => {},
+        label: Text('ADD'),
+        elevation: 0,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green,
+      ),
     );
   }
 
@@ -41,3 +40,13 @@ class ProductDisplayPage extends StatelessWidget {
     return Colors.grey;
   }
 }
+
+// TextButton(
+//   style: TextButton.styleFrom(
+//       primary: Colors.white,
+//       backgroundColor: Colors.green,
+//       minimumSize:
+//           Size(MediaQuery.of(context).size.width - 40, 45)),
+//   onPressed: () => {},
+//   child: Text('ADD'),
+// ),
