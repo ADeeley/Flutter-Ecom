@@ -11,15 +11,17 @@ class Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
       child: Column(
         children: [
-          Transform.rotate(
-              angle: Math.pi / 5,
-              child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: data.mainImage,
-                  height: 160)),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Transform.rotate(
+                angle: Math.pi / 5,
+                child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: data.mainImage,
+                    height: 160)),
+          ),
           Text(
             data.name,
             style: TextStyle(fontSize: 16),

@@ -1,3 +1,4 @@
+import 'package:ecom_app/assets/config/config.dart';
 import 'package:ecom_app/widgets/pages/product_display_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -22,9 +23,8 @@ class _ProductListState extends State<ProductList> {
             (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
           return GridView.count(
             childAspectRatio: 0.6,
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+            crossAxisCount: int.parse(config['productGridColumnCount']),
+            clipBehavior: Clip.hardEdge,
             padding: EdgeInsets.all(8), // Padding around the list
             children: _listItems(snapshot),
           );
@@ -34,22 +34,38 @@ class _ProductListState extends State<ProductList> {
   List<Widget> _listItems(AsyncSnapshot<List<ProductModel>> snapshot) {
     if (snapshot.data != null) {
       return snapshot.data
-          .map(
-            (productData) => GestureDetector(
-              child: new Product(data: productData),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductDisplayPage(productData),
-                  ),
-                );
-              },
-            ),
-          )
+          .map((productData) => Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: _elementDivider(snapshot.data, productData,
+                    int.parse(config['productGridColumnCount'])),
+                child: GestureDetector(
+                  child: new Product(data: productData),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDisplayPage(productData),
+                      ),
+                    );
+                  },
+                ),
+              ))
           .toList();
     } else /* display loading text */ {
       return [Text('Loading...')];
+    }
+  }
+
+  /// Provides a dividing line between rows of elements
+  BoxDecoration _elementDivider<T>(
+      List<T> data, T product, int crossAxisCount) {
+    final int trailing = crossAxisCount -
+        (data.length % crossAxisCount); // don't apply to trailing elements
+
+    if (data.indexOf(product) < data.length - trailing) {
+      return BoxDecoration(border: Border(bottom: BorderSide(width: 1)));
+    } else {
+      return BoxDecoration();
     }
   }
 }

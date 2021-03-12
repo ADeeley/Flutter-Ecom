@@ -9,30 +9,32 @@ class ProductDisplayPage extends StatelessWidget {
   ProductDisplayPage(this.data);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            config['appTitle'],
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontFamily: 'Helvetica',
-            ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          config['appTitle'],
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: 'Helvetica',
           ),
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: Colors.blue.shade900,
-          centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Icon(
-                Icons.toc_sharp,
-                color: Colors.white,
-              ),
-            )
-          ],
         ),
-        body: ProductDisplay(data),
-        backgroundColor: Colors.white,
-      );
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.blue.shade900,
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Icon(
+              Icons.toc_sharp,
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
+      body: ProductDisplay(data),
+      backgroundColor: Colors.white,
+    );
+  }
 }
