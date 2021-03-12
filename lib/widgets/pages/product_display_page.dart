@@ -20,6 +20,44 @@ class ProductDisplayPage extends StatelessWidget {
         panel: Column(
           children: [
             Icon(Icons.drag_handle_rounded),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                    onPressed: () => {},
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Icon(Icons.favorite_outline),
+                        ),
+                        Text('SAVE'),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () => {},
+                    child: Row(
+                      children: [
+                        Icon(Icons.category),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Text('SIZE GUIDE'),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () => {},
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Icon(Icons.share_outlined),
+                        ),
+                        Text('SHARE'),
+                      ],
+                    )),
+              ],
+            )
           ],
         ),
         body: Center(child: ProductDisplay(data)),
