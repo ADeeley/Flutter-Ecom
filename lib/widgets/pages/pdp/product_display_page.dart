@@ -87,15 +87,16 @@ class SlidingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () => {},
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 4),
-              child: icon,
-            ),
-            text,
-          ],
-        ));
+      onPressed: () => {},
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 4),
+            child: icon,
+          ),
+          text,
+        ],
+      ),
+    );
   }
 }
