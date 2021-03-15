@@ -16,22 +16,41 @@ class ProductDisplayPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: MainAppBar(),
       body: SlidingUpPanel(
+        collapsed: Container(color: Colors.white),
         minHeight: 100,
-        panel: Column(
-          children: [
-            Icon(Icons.drag_handle_rounded),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SlidingActionButton(
-                    text: Text('SAVE'), icon: Icon(Icons.favorite_outline)),
-                SlidingActionButton(
-                    text: Text('SIZE GUIDE'), icon: Icon(Icons.circle)),
-                SlidingActionButton(
-                    text: Text('SHARE'), icon: Icon(Icons.share_outlined)),
-              ],
-            )
-          ],
+        panel: Padding(
+          padding: const EdgeInsets.only(top: 30),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SlidingActionButton(
+                      text: Text('SAVE'), icon: Icon(Icons.favorite_outline)),
+                  SlidingActionButton(
+                      text: Text('SIZE GUIDE'), icon: Icon(Icons.circle)),
+                  SlidingActionButton(
+                      text: Text('SHARE'), icon: Icon(Icons.share_outlined)),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Text(
+                        "DESCRIPTION",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    Text(data.description),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
         body: Center(child: ProductDisplay(data)),
       ),
