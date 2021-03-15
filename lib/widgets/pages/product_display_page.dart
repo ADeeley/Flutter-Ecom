@@ -39,7 +39,10 @@ class ProductDisplayPage extends StatelessWidget {
       bottomNavigationBar: MainBottomNavigationBar(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => {},
-        label: Text('ADD'),
+        label: Padding(
+          padding: const EdgeInsets.all(150), // Use media queries here instead
+          child: Text('ADD'),
+        ),
         elevation: 0,
         foregroundColor: Colors.white,
         backgroundColor: Colors.green,
