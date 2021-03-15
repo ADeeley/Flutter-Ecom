@@ -10,7 +10,6 @@ class ProductListPage extends StatelessWidget {
     return Scaffold(
       appBar: MainAppBar(),
       body: ProductList(),
-      backgroundColor: Colors.white,
     );
   }
 }

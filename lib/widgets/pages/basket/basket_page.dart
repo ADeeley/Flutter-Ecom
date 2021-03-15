@@ -9,7 +9,6 @@ class BasketPage extends StatelessWidget {
     return Scaffold(
       appBar: MainAppBar(),
       body: Basket(),
-      backgroundColor: Colors.white,
     );
   }
 }

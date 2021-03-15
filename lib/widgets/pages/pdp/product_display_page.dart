@@ -54,7 +54,6 @@ class ProductDisplayPage extends StatelessWidget {
         ),
         body: Center(child: ProductDisplay(data)),
       ),
-      backgroundColor: Colors.white,
       bottomNavigationBar: MainBottomNavigationBar(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => {},

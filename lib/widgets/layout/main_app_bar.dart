@@ -23,7 +23,6 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.blue.shade900,
         centerTitle: true,
         actions: [
           Padding(
