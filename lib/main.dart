@@ -1,5 +1,6 @@
 import 'package:ecom_app/widgets/layout/main_bottom_navigation_bar.dart';
-import 'package:ecom_app/widgets/pages/product_list_page.dart';
+import 'package:ecom_app/widgets/pages/pdp/product_display_page.dart';
+import 'package:ecom_app/widgets/pages/plp/product_list_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

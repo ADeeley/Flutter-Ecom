@@ -1,7 +1,7 @@
 import 'package:ecom_app/models/product_model.dart';
 import 'package:ecom_app/widgets/layout/main_app_bar.dart';
 import 'package:ecom_app/widgets/layout/main_bottom_navigation_bar.dart';
-import 'package:ecom_app/widgets/product_display.dart';
+import 'package:ecom_app/widgets/pages/pdp/product_display.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 

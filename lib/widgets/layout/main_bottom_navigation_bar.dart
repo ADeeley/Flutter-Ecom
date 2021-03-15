@@ -1,3 +1,5 @@
+import 'package:ecom_app/widgets/pages/basket/basket.dart';
+import 'package:ecom_app/widgets/pages/basket/basket_page.dart';
 import 'package:flutter/material.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
@@ -13,6 +15,14 @@ class MainBottomNavigationBar extends StatelessWidget {
       ],
       showSelectedLabels: false,
       showUnselectedLabels: false,
+      onTap: (value) {
+        if (value == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BasketPage()),
+          );
+        }
+      },
     );
   }
 

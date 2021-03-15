@@ -1,10 +1,10 @@
 import 'package:ecom_app/assets/config/config.dart';
-import 'package:ecom_app/widgets/pages/product_display_page.dart';
+import 'package:ecom_app/widgets/pages/pdp/product_display_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:ecom_app/models/product_model.dart';
 import 'package:ecom_app/services/products_service.dart';
-import 'package:ecom_app/widgets/product.dart';
+import 'package:ecom_app/widgets/shared/product.dart';
 
 class ProductList extends StatefulWidget {
   @override
