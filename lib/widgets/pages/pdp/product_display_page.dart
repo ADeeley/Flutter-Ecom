@@ -1,8 +1,10 @@
+import 'package:ecom_app/models/basket_model.dart';
 import 'package:ecom_app/models/product_model.dart';
 import 'package:ecom_app/widgets/layout/main_app_bar.dart';
 import 'package:ecom_app/widgets/layout/main_bottom_navigation_bar.dart';
 import 'package:ecom_app/widgets/pages/pdp/product_display.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ProductDisplayPage extends StatelessWidget {
@@ -12,6 +14,8 @@ class ProductDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BasketModel basket = Provider.of<BasketModel>(context, listen: false);
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: MainAppBar(),
@@ -56,7 +60,7 @@ class ProductDisplayPage extends StatelessWidget {
       ),
       bottomNavigationBar: MainBottomNavigationBar(),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => {},
+        onPressed: () => {basket.addProduct(data)},
         label: Padding(
           padding: const EdgeInsets.all(150), // Use media queries here instead
           child: Text('ADD'),
