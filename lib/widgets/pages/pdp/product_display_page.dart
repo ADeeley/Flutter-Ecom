@@ -6,6 +6,7 @@ import 'package:ecom_app/widgets/pages/pdp/product_display.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:toast/toast.dart';
 
 class ProductDisplayPage extends StatelessWidget {
   ProductModel data;
@@ -60,7 +61,10 @@ class ProductDisplayPage extends StatelessWidget {
       ),
       bottomNavigationBar: MainBottomNavigationBar(),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => {basket.addProduct(data)},
+        onPressed: () {
+          basket.addProduct(data);
+          Toast.show('Added to basket', context, gravity: Toast.CENTER);
+        },
         label: Padding(
           padding: const EdgeInsets.all(150), // Use media queries here instead
           child: Text('ADD'),

@@ -22,17 +22,15 @@ class Basket extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Divider(
-            color: Colors.grey.shade300,
-          ),
+          Divider(color: Colors.grey.shade300),
         ]..addAll(basket.products
-            .map((ProductModel product) => basketProduct(product, basket))),
+            .map((ProductModel product) => _basketProduct(product, basket))),
       ),
     );
   }
 }
 
-Column basketProduct(ProductModel product, BasketModel basket) {
+Column _basketProduct(ProductModel product, BasketModel basket) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.all(20.0),
@@ -42,32 +40,18 @@ Column basketProduct(ProductModel product, BasketModel basket) {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: Text(
-                product.name.toUpperCase(),
+              child: Text(product.name.toUpperCase()),
+            ),
+            Row(children: [
+              Text('COLOR: ${product.colour}'),
+            ]),
+            Row(children: [Text('SIZE: TBD')]),
+            Row(children: [
+              Text(
+                PriceModel.getPrice(product.price),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
-            Row(
-              children: [
-                Text(
-                  'COLOR: ${product.colour}',
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text('SIZE: TBD'),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  PriceModel.getPrice(
-                    product.price,
-                  ),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            )
+            ])
           ],
         ),
         leading: Transform.rotate(
@@ -85,43 +69,23 @@ Column basketProduct(ProductModel product, BasketModel basket) {
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ElevatedButton(
-          onPressed: () => {},
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: Text("MOVE TO BAG"),
-              ),
-            ],
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () => {},
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: Text("EDIT"),
-              ),
-            ],
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () => basket.removeProduct(product.id),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: Text("DELETE"),
-              ),
-            ],
-          ),
-        )
+        _basketProductButton('MOVE TO BAG', () => {}),
+        _basketProductButton('EDIT', () => {}),
+        _basketProductButton('DELETE', () => basket.removeProduct(product.id))
       ],
     ),
-    Divider(
-      color: Colors.grey.shade300,
-    ),
+    Divider(color: Colors.grey.shade300),
   ]);
+}
+
+Widget _basketProductButton(String text, Function onPressed) {
+  return ElevatedButton(
+    onPressed: onPressed,
+    child: Row(children: [
+      Padding(
+        padding: const EdgeInsets.only(right: 4),
+        child: Text(text),
+      ),
+    ]),
+  );
 }
