@@ -9,7 +9,7 @@ import 'dart:math' as Math;
 class Basket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    BasketModel basket = Provider.of<BasketModel>(context, listen: false);
+    BasketModel basket = Provider.of<BasketModel>(context, listen: true);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -26,13 +26,13 @@ class Basket extends StatelessWidget {
             color: Colors.grey.shade300,
           ),
         ]..addAll(basket.products
-            .map((ProductModel product) => basketProduct(product))),
+            .map((ProductModel product) => basketProduct(product, basket))),
       ),
     );
   }
 }
 
-Column basketProduct(ProductModel product) {
+Column basketProduct(ProductModel product, BasketModel basket) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.all(20.0),
@@ -108,7 +108,7 @@ Column basketProduct(ProductModel product) {
           ),
         ),
         ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => basket.removeProduct(product.id),
           child: Row(
             children: [
               Padding(
