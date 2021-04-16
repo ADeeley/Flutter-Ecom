@@ -18,60 +18,68 @@ class Basket extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '${basket.products.length} PRODUCTS',
+              '${basket.products.length} PRODUCT${basket.products.length > 1 ? "S" : ""}',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Divider(color: Colors.grey.shade300),
-        ]..addAll(basket.products
-            .map((ProductModel product) => _basketProduct(product, basket))),
+        ]..addAll(
+            basket.products.map(
+              (ProductModel product) =>
+                  _basketProduct(context, product, basket),
+            ),
+          ),
       ),
     );
   }
 }
 
-Column _basketProduct(ProductModel product, BasketModel basket) {
+Widget _basketProduct(context, ProductModel product, BasketModel basket) {
+  final productImage = Transform.rotate(
+    angle: Math.pi / 5,
+    child: FadeInImage.memoryNetwork(
+      placeholder: kTransparentImage,
+      image: product.mainImage,
+      fit: BoxFit.fitWidth,
+      height: 150,
+      width: 150,
+    ),
+  );
+
+  final productDetails = Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Text(product.name.toUpperCase()),
+      ),
+      Row(children: [Text('COLOR: ${product.colour}')]),
+      Row(children: [Text('SIZE: TBD')]),
+      Row(children: [
+        Text(
+          PriceModel.getPrice(product.price),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ])
+    ],
+  );
+
   return Column(children: [
     Padding(
       padding: const EdgeInsets.all(20.0),
-      child: ListTile(
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Text(product.name.toUpperCase()),
-            ),
-            Row(children: [
-              Text('COLOR: ${product.colour}'),
-            ]),
-            Row(children: [Text('SIZE: TBD')]),
-            Row(children: [
-              Text(
-                PriceModel.getPrice(product.price),
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ])
-          ],
-        ),
-        leading: Transform.rotate(
-          angle: Math.pi / 5,
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: product.mainImage,
-            fit: BoxFit.fitWidth,
-            height: 150,
-            width: 150,
-          ),
-        ),
-      ),
+      child: ListTile(title: productDetails, leading: productImage),
     ),
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _basketProductButton('MOVE TO BAG', () => {}),
         _basketProductButton('EDIT', () => {}),
-        _basketProductButton('DELETE', () => basket.removeProduct(product.id))
+        _basketProductButton('DELETE', () async {
+          final approved = await _showMyDialog(context);
+          if (approved) {
+            basket.removeProduct(product.id);
+          }
+        })
       ],
     ),
     Divider(color: Colors.grey.shade300),
@@ -87,5 +95,32 @@ Widget _basketProductButton(String text, Function onPressed) {
         child: Text(text),
       ),
     ]),
+  );
+}
+
+Future<bool> _showMyDialog(context) async {
+  return showDialog<bool>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('AlertDialog Title'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[Text('Remove product?')],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Yes'),
+            onPressed: () => Navigator.pop(context, true),
+          ),
+          TextButton(
+            child: Text('No'),
+            onPressed: () => Navigator.pop(context, false),
+          ),
+        ],
+      );
+    },
   );
 }

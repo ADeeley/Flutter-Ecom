@@ -17,10 +17,7 @@ class ProductDisplay extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            data.name,
-            style: TextStyle(fontSize: 16),
-          ),
+          Text(data.name, style: TextStyle(fontSize: 16)),
           Text(
             PriceModel.getPrice(data.price),
             style: TextStyle(fontWeight: FontWeight.bold),
@@ -31,9 +28,10 @@ class ProductDisplay extends StatelessWidget {
             child: Transform.rotate(
               angle: Math.pi / 5,
               child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: data.mainImage,
-                  fit: BoxFit.fitWidth),
+                placeholder: kTransparentImage,
+                image: data.mainImage,
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
           // Text(data.description),

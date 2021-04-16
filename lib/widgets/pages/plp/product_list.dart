@@ -39,7 +39,9 @@ class _ProductListState extends State<ProductList> {
                 decoration: _elementDivider(
                   snapshot.data,
                   snapshot.data.indexOf(productData),
-                  int.parse(config['productGridColumnCount']),
+                  int.parse(
+                    config['productGridColumnCount'],
+                  ),
                 ),
                 child: GestureDetector(
                   child: new Product(data: productData),
